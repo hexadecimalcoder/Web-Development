@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		body{
+			transition-duration: 0.5s;
+		}
+		.switch{
+			padding: 10px;
+			margin: 50px;
+			border: 1px solid #c3c3c3;
+			display: block;
+			height: 100px;
+			width: 200px;
+			border-radius: 60px;
+			background-color: #0f0;
+			box-shadow: 0px  0px 10px #000 inset;
+			transition-duration: 0.5s;
+		}
+		#button{
+			height: 100px;
+			width: 100px;
+			border-radius: 50px;
+			position: relative;
+			left: 0px;
+			/*border: 1px solid;*/
+			background: linear-gradient(145deg,#e8e8e8,#c3c3c3);
+			box-shadow:2px 2px 6px #000;
+			transition-duration: 0.5s;
+		}
+		a{
+			height: 50px;
+			border: 1px solid;
+			text-decoration: none;
+			color: #000;
+			padding: 10px;
+			margin: 50px;
+
+		}
+	</style>
+</head>
+<body>
+	<div>Start the server to test the page, features will not work otherwise</div>
+<div class="switch" id="switch">
+	<div id="button" onclick="toggle()">
+	</div>
+</div>
+<a id="link" href="index2.html">Page 2</a>
+<script>
+// Check browser support
+if (localStorage.buttonstate) {
+	//document.getElementById("button").innerHTML = localStorage.buttonstate;
+	if (localStorage.buttonstate=="On") {
+		//document.getElementById("button").innerHTML = "Off";
+		document.getElementById("button").style.left="100px";
+		document.getElementById("switch").style.backgroundColor="#2de348";
+		document.body.style.backgroundColor="#404040";
+		document.getElementById("link").style.color="#fff";
+		//localStorage.buttonstate="Off";
+	}
+	else if (localStorage.buttonstate=="Off") {
+		//document.getElementById("button").innerText="On";
+		document.getElementById("button").style.left="0px";
+		document.getElementById("switch").style.backgroundColor="#e32d33";
+		document.body.style.backgroundColor="#e0e0e0";
+		document.getElementById("link").style.color="#000";
+		//localStorage.buttonstate="On";
+	}
+}
+else{
+//	document.getElementById("button").innerHTML = "On";
+	document.getElementById("button").style.left="100px";
+	localStorage.buttonstate="On";
+	document.body.style.backgroundColor="#404040";
+	document.getElementById("link").style.color="#fff";
+}
+//localStorage.state="On";
+function toggle(){
+
+	if (localStorage.buttonstate=="On") {
+		//document.getElementById("button").innerHTML = "Off";
+		document.getElementById("button").style.left="0px";
+		document.getElementById("switch").style.backgroundColor="#e32d33";
+		document.body.style.backgroundColor="#e0e0e0";
+		document.getElementById("link").style.color="#000";
+		localStorage.buttonstate="Off";
+	}
+	else if (localStorage.buttonstate=="Off") {
+		//document.getElementById("button").innerText="On";
+		document.getElementById("button").style.left="100px";
+		document.getElementById("switch").style.backgroundColor="#2de348";
+		document.body.style.backgroundColor="#404040";
+		document.getElementById("link").style.color="#fff";
+		localStorage.buttonstate="On";
+	}
+	//console.log(document.getElementById("button").innerHTML);
+	// if (document.getElementById("button").innerText=="On") {
+	// 	document.getElementById("button").innerHTML = "Off";
+	// 	document.getElementById("button").style.left="100px";
+	// 	localStorage.buttonstate="Off";
+	// }
+	// else if (document.getElementById("button").innerText=="Off") {
+	// 	document.getElementById("button").innerText="On";
+	// 	document.getElementById("button").style.left="0px";
+	// 	localStorage.buttonstate="On";
+	// }
+}
+</script>
+
+</body>
+</html>

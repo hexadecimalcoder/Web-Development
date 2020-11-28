@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		#result{
+			font-size: 12em;
+		}
+		a{
+			height: 50px;
+			border: 1px solid;
+			text-decoration: none;
+			color: #000;
+			padding: 10px;
+			margin: 50px;
+
+		}
+	</style>
+</head>
+<body>
+<div id="result"></div>
+<a id="link" href="./">Page 1</a>
+<script>
+// Check browser support
+// if (localStorage.getItem("lastname")) {
+// 	document.getElementById("result").innerHTML = localStorage.buttonstate;
+// }
+if (localStorage.buttonstate) {
+	document.getElementById("result").innerHTML = "Dark Mode:" +localStorage.buttonstate;
+	if (localStorage.buttonstate=="On") {
+		//document.getElementById("button").innerHTML = "Off";
+		document.body.style.backgroundColor="#404040";
+		document.getElementById("link").style.color="#fff";
+		document.getElementById("result").style.color="#fff";
+		//localStorage.buttonstate="Off";
+	}
+	else if (localStorage.buttonstate=="Off") {
+		//document.getElementById("button").innerText="On";
+		document.body.style.backgroundColor="#e0e0e0";
+		document.getElementById("link").style.color="#000";
+		//localStorage.buttonstate="On";
+	}
+}
+</script>
+
+</body>
+</html>

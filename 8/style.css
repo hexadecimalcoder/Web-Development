@@ -1,0 +1,66 @@
+.outer-shell{
+	width: 350px;
+	height: 60px;
+	position: relative;
+}
+.title{
+	display: inline;
+	position: absolute;
+	/*margin: auto;*/
+  width: 95%;
+  height: 40%;
+  padding: 10px 0;
+  margin: 10px;
+/*  border: 1px solid;*/
+	text-align: center;
+	/*top: 25px;
+	left: 80px;*/
+	z-index: 1;
+	font-size: 22px;
+	top: 0px;
+	left: 0px;
+/*	top: 0px;
+	left: 10px;
+	z-index: 1;
+	font-size: 12px;*/
+	background-color: transparent;
+/*	padding: 3px;
+	padding-left: 7px;
+	padding-right: 7px;*/
+	color: #2076f7;
+	transition: all 1.5s linear;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.text-box{
+	display: block;
+	height: 80%;
+	width: 98%;
+	margin: 2px;
+	margin-bottom: 0px;
+	position: absolute;
+	left: 0px;
+	top: 7px;
+	z-index: 0;
+	border: 2px solid #2076f7;
+	border-radius: 5px;
+}
+.text-box input, input:focus{
+	height: 90%;
+	width: 98%;
+	border: none;
+	outline: none;
+	box-sizing: border-box;
+	padding-left: 15px;
+	font-size: 16px;
+	vertical-align: middle;
+	color: #4f4f4f;
+}
+/*.text-box textarea, textarea:focus{
+	padding-left: 10px;
+	box-sizing: border-box;
+}*/

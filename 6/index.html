@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.loader {
+		border: 16px solid #f3f3f3;
+		border-radius: 50%;
+		border-top: 16px solid #3498db;
+		width: 120px;
+		height: 120px;
+		-webkit-animation: spin 2s linear infinite; /* Safari */
+		animation: spin 2s linear infinite;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 40vh;
+		margin-bottom: 40vh; 
+		}
+
+		/* Safari */
+		@-webkit-keyframes spin {
+		0% { -webkit-transform: rotate(0deg); }
+		100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
+		}
+		.card{
+			width: 700px;
+			max-height: 150px;
+			box-shadow: 5px 5px 8px #888888;
+			border: #888888 solid 0.5px;
+			border-radius: 15px;
+			display: flex;
+			padding: 10px;
+			margin: 15px;
+		}
+		.text{
+			flex: 5;
+			padding: 10px;
+		}
+		.title{
+			font-size: 24px;
+		}
+		.subtitle{
+			padding-top: 20px;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		.image{
+			flex: 1;
+			overflow: hidden;
+			height: 100px;
+			border-radius: 7px;
+			border: 1px black solid;
+		}
+		.image img{
+			max-width: 100%;
+			max-height: 100%;
+			display: block;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		a, a:hover, a:focus, a:active {
+		      text-decoration: none;
+		      color: inherit;
+		 }
+	</style>
+	<script async="" src="stats.js"></script>
+</head>
+<body>
+<p id="demo"></p>
+<div id="data">
+	
+</div>
+<div class="loader" id="loader"></div>
+<!-- <div class="card">
+	<div  class="text">
+		<div class="title">
+			Redmi K30S Price in India, Specifications, Comparison (27th October 2020)
+		</div>
+		<div class="subtitle">
+			Redmi K30S Price in India, Specifications, Comparison (27th October 2020)
+		</div>
+	</div>
+	<div class="image">
+		
+	</div>
+</div> -->
+</body>
+</html>
