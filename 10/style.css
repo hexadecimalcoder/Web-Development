@@ -1,0 +1,108 @@
+.outer-shell {
+	/*background-color: #aaa;
+	height: 100vh;
+	width: 100%;
+	border: 1px solid black;
+	padding: 5px;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 0;*/
+	background-color: #efeeee;
+	position: relative;
+	width: 100%;
+	padding-top: 42.85%; /* 16:9 Aspect Ratio 56.25 */
+	
+}
+.inner-shell{
+	position:  absolute;
+	top: -15px;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+	padding:30px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+.canvas-outer{
+	background-color: #efeeee;
+	box-shadow: -10px -10px 10px rgba(255, 255, 255, 0.5), 13px 13px 15px rgba(209, 205, 199, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 20px;
+	height: 100%;
+	padding-left: 72.24%;
+	margin: auto;
+	position: relative;
+}
+.canvas-inner{
+	position:  absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: repeat(15, 1fr);
+	grid-template-rows: repeat(8, 1fr);
+}
+.hour-outer{
+	position: relative;
+	border: 1px solid black;
+	height: 90%;
+	margin: 5px;
+	flex: 3;
+/*			display: inline-block;*/
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+}
+.separator-outer{
+	position: relative;
+	border: 1px solid black;
+	height: 90%;
+	margin: 5px;
+	flex: 1;		
+/*			display: inline-block;*/
+	box-sizing: border-box;
+	/*align-self: center;*/	
+}		
+.minute-outer{
+	position: relative;
+	border: 1px solid black;
+	height: 90%;
+	margin: 5px;		
+	flex: 3;
+/*			display: inline-block;*/
+	box-sizing: border-box;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+}
+.unit{
+	height: 96%;
+	width: 96%;
+	border-radius: 50%;
+	box-sizing: border-box;
+	background-color: #dedede;
+	position: relative;
+	align-items: center;
+}
+.arm{
+	width: 5px;
+	height: calc(50% + 2.5px);
+	position: absolute;
+	left: 50%;
+	border-radius: 2.5px;
+	background-color: #000;
+	transform-origin: 50% calc(100% - 2.5px);
+	transition-duration: 2s;	
+}
+#one{
+	transform: translate(-50%, 0) rotate(300deg);
+}
+#two{
+	transform: translate(-50%, 0) rotate(180deg);
+}
