@@ -2,8 +2,13 @@ var h = 8, w = 15;
 var total_units = h*w;
 var element = "";
 var random_x = 0, random_y = 0;
+var interval = 10000; //transition duration
+var duration = 2000;
+var is_mobile;
 var unit ="<div class=\"unit\"><div class=\"arm\" id=\"one\"></div><div class=\"arm\" id=\"two\"></div></div>";
 element = unit.repeat(total_units);
+
+
 // for (var i=1; i<=total_units; i++)
 // {
 // 	element += unit;
@@ -11,14 +16,139 @@ element = unit.repeat(total_units);
 //sleep(5000);
 //loop();
 //setInterval(loop,30000);
+window.addEventListener("orientationchange", function() {
+  checkorientation();
+}, false);
 document.getElementsByClassName("canvas-inner")[0].innerHTML = element;
+document.getElementsByClassName('canvas-outer')[0].style.transitionDuration = "0.5s";
 var number =-1;
 //shuffle();
-setInterval(loop_time,5000);
+//shuffle();
+//ENABLE THIS
+setTimeout(shuffle, 0)
+setTimeout(loop_time, interval+duration);
+
+//setInterval(loop_digits,5000);
+
+// document.onclick = function (argument) {
+//     var conf = confirm("Fullscreen mode?");
+//     var docelem = document.documentElement;
+
+//     if (conf == true) {
+//         if (docelem.requestFullscreen) {
+//             docelem.requestFullscreen();
+//         }
+//         else if (docelem.mozRequestFullScreen) {
+//             docelem.mozRequestFullScreen();
+//         }
+//         else if (docelem.webkitRequestFullScreen) {
+//             docelem.webkitRequestFullScreen();
+//         }
+//         else if (docelem.msRequestFullscreen) {
+//             docelem.msRequestFullscreen();
+//         }
+//     }
+// }
+if (screen.width < screen.height) {
+	document.getElementsByClassName("overlay")[0].style.visibility = "visible";
+	document.getElementsByClassName("overlay")[0].style.opacity = "1";
+	is_mobile = true;
+	document.getElementsByClassName("right-panel")[0].style.width = "200px";
+	document.getElementById("right-panel-title").style.fontSize = "40px";
+	document.getElementById("right-panel-title").style.lineHeight = "32px";
+	document.getElementById("right-panel-description").style.fontSize = "16px";
+	document.getElementById("right-panel-description").style.lineHeight = "16px";
+	document.getElementById("right-panel-footer").style.width = "75%";
+	document.getElementById("rotate").style.display = "block";
+}	
+// if (screen.width < screen.height) {
+// 	document.getElementsByClassName("canvas-inner")[0].style.gridTemplateColumns = "repeat(8, 1fr)";
+// 	document.getElementsByClassName("canvas-inner")[0].style.gridTemplateRows = "repeat(15, 1fr)";
+// 	document.getElementsByClassName("canvas-outer")[0].style.height = 0.9 * screen.height;	
+// 	document.getElementsByClassName("outer-shell")[0].style.paddingTop = "0%";
+// 	document.getElementsByClassName("outer-shell")[0].style.width = "";
+// 	document.getElementsByClassName("outer-shell")[0].style.height = "85vh";
+// 	document.getElementsByClassName("canvas-outer")[0].style.paddingLeft = (8/15)*document.getElementsByClassName("canvas-outer")[0].clientHeight;
+// }	
+
 // document.getElementsByClassName('unit')[0].getElementsByClassName("arm")[0].style.transform = "translate(-50%, 0) rotate(240deg)" ;
+function checkorientation(){
+	if (window.orientation == 0 && is_mobile) {
+		document.getElementById("rotate").style.display = "block";
+	}
+}
+function closepopup(){
+	document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
+	document.getElementsByClassName("overlay")[0].style.opacity = "0";
+}
+function rotate(){
+    let docelem = document.documentElement;
+    if (docelem.requestFullscreen) {
+        docelem.requestFullscreen();
+    }
+    else if (docelem.mozRequestFullScreen) {
+        docelem.mozRequestFullScreen();
+    }
+    else if (docelem.webkitRequestFullScreen) {
+        docelem.webkitRequestFullScreen();
+    }
+    else if (docelem.msRequestFullscreen) {
+        docelem.msRequestFullscreen();
+    }
+    document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
+	document.getElementsByClassName("overlay")[0].style.opacity = "0";
+	screen.orientation.lock("landscape-primary")
+	.then()
+	.catch(function(error) {
+		alert(error);
+	});
+	document.getElementsByClassName("outer-shell")[0].style.paddingTop = "52.00%";
+	document.getElementsByClassName("canvas-outer")[0].style.paddingLeft = "91.4%";
+	let arms = document.getElementsByClassName("arm");
+	for (let i = arms.length - 1; i >= 0; i--) {
+		arms[i].style.width = "3px";
+		arms[i].style.transformOrigin = "50% calc(100% - 1.5px)";
+	}
+	document.getElementById("rotate").style.display = "none";
+	// document.getElementsByClassName("arm").style.width = "3px";
+	// document.getElementsByClassName("arm").style.transformOrigin = "50% calc(100% - 1.5px)";
+}
+function showrightpanel(){
+	let xpos = document.getElementsByClassName('right-panel')[0].style.right;
+	document.getElementsByClassName('canvas-outer')[0].style.transitionDuration = "0.5s";
+	if(xpos == "0px"){ //Panel Open- Close that
+		document.getElementsByClassName("fa-close")[0].className = "fa fa-info";
+		document.getElementById("right-panel-button").style.color = "#efeeee";
+		document.getElementById("right-panel-button").style.backgroundColor = "#999";
+		document.getElementById("right-panel-button").style.padding = "5px 15px";
+		if (is_mobile) { //mobile device
+			document.getElementsByClassName('right-panel')[0].style.right = "-300px";
+			document.getElementsByClassName('canvas-outer')[0].style.left = "0px";
+		}
+		else{
+			document.getElementsByClassName('right-panel')[0].style.right = "-300px";
+			document.getElementsByClassName('canvas-outer')[0].style.left = "0px";
+		}
+	}
+	else{ //Panel Closed- Open that
+		document.getElementsByClassName("fa-info")[0].className = "fa fa-close";
+		document.getElementById("right-panel-button").style.color = "#999";
+		document.getElementById("right-panel-button").style.backgroundColor = "#efeeee";
+		document.getElementById("right-panel-button").style.padding = "5px 10px";
+		if (is_mobile) { //mobile device
+			document.getElementsByClassName('right-panel')[0].style.right = "0px";
+			document.getElementsByClassName('canvas-outer')[0].style.left = "-100px";
+		}
+		else {
+			document.getElementsByClassName('right-panel')[0].style.right = "0px";
+			document.getElementsByClassName('canvas-outer')[0].style.left = "-150px";
+		}
+	}
+}
+
 
 function goFullscreen() {
-	var elem = document.documentElement;
+	let elem = document.documentElement;
 	if (elem.requestFullscreen) {
 		elem.requestFullscreen();
 	} 
@@ -49,13 +179,21 @@ function closeFullscreen() {
   document.getElementsByClassName("fa")[0].className = "fa fa-expand";
 }
 function setDigitXY(index, posX, posY, arm1, arm2) {
-	var startingPos, absoluteValue;
+	let startingPos, absoluteValue;
 	if (index==1) { startingPos=16;}
 	else if (index==2) { startingPos=19;}
 	else if (index==3) { startingPos=23;}
 	else if (index==4) { startingPos=26;}
 	else return;
 	absoluteValue= startingPos + posX + posY*w;
+	// if (screen.width<screen.height) {
+	// 	if (index==1) { startingPos=9;}
+	// 	else if (index==2) { startingPos=12;}
+	// 	else if (index==3) { startingPos=65;}
+	// 	else if (index==4) { startingPos=68;}
+	// 	else return;
+	// 	absoluteValue = startingPos + posX + posY*8;
+	// }
 	//console.log(absoluteValue);
 	document.getElementsByClassName('unit')[absoluteValue].getElementsByClassName("arm")[0].style.transform = "translate(-50%, 0) rotate("+arm1+"deg)";
 	document.getElementsByClassName('unit')[absoluteValue].getElementsByClassName("arm")[1].style.transform = "translate(-50%, 0) rotate("+arm2+"deg)";
@@ -77,9 +215,9 @@ function sleep(ms) {
 // }
 
 function loop_random() {
-	var x = Math.random();
-	var y = Math.random();
-	for (var i=0; i< total_units; i++)
+	let x = Math.random();
+	let y = Math.random();
+	for (let i=0; i< total_units; i++)
 	{
 		document.getElementsByClassName('unit')[i].getElementsByClassName("arm")[0].style.transform = "translate(-50%, 0) rotate("+x*360+"deg)";
 		document.getElementsByClassName('unit')[i].getElementsByClassName("arm")[1].style.transform = "translate(-50%, 0) rotate("+y*360+"deg)";
@@ -92,41 +230,45 @@ function loop_random() {
 }
 
 function loop_digits() {
-	//number=9;
+	//number=1;
 	//console.log(number);
 	number++;
 	if (number>9) {number=0;}
-	var angleOne, angleTwo;
+	let angleOne, angleTwo;
 	random_x = 0.625;
 	random_y = 0.625;
-	for ( var j = 1; j <= 4; j++) {
-		for ( var y = 0; y <= 5; y++) {
-			for ( var x = 0; x <= 2; x++) {
+	for ( let j = 1; j <= 4; j++) {
+		for ( let y = 0; y <= 5; y++) {
+			for ( let x = 0; x <= 2; x++) {
 				angleOne = getAngleDigitPos(number, x, y, "arm1");
 				angleTwo = getAngleDigitPos(number, x, y, "arm2");
 				setDigitXY(j, x, y, angleOne, angleTwo);
 			}
 		}
 	}
-	var list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 22, 29, 30, 37, 44, 45, 52, 59, 60, 67, 74, 75, 82, 89, 90, 97, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119];
-	for (var i = 0; i<list.length; i++)
+	let list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 22, 29, 30, 37, 44, 45, 52, 59, 60, 67, 74, 75, 82, 89, 90, 97, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119];
+	// if (screen.width<screen.height) {
+	// 	list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 47, 48, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 71, 72, 79, 80, 87, 88, 95, 96, 103, 104, 111, 112, 113, 114, 115, 116, 117, 118, 119];
+	// }
+	for (let i = 0; i<list.length; i++)
 	{
 		//console.log(i);
 		document.getElementsByClassName('unit')[list[i]].getElementsByClassName("arm")[0].style.transform = "translate(-50%, 0) rotate("+random_x*360+"deg)";
 		document.getElementsByClassName('unit')[list[i]].getElementsByClassName("arm")[1].style.transform = "translate(-50%, 0) rotate("+random_y*360+"deg)";
 	}
 	setTimeout(shuffle, 3000);
+	setTimeout(loop_time, 5000);
 }
 
 
 function loop_time() {
-	var angleOne, angleTwo;
+	let angleOne, angleTwo;
 	random_x = 0.625;
 	random_y = 0.625;
-	var date = new Date();
-	var hours = date.getHours();
-	var minutes = date.getMinutes();
-	var h1, h2, m1, m2;
+	let date = new Date();
+	let hours = date.getHours();
+	let minutes = date.getMinutes();
+	let h1, h2, m1, m2;
 	if (hours<10) {
 		h1 = 0;
 	}
@@ -141,11 +283,11 @@ function loop_time() {
 		m1 = Math.floor(minutes/10);
 	}
 	m2 = minutes % 10;
-	var timeVariables = [h1, h2, m1, m2];
+	let timeVariables = [h1, h2, m1, m2];
 	//console.log(h1, h2, m1, m2);
-	for ( var j = 1; j <= 4; j++) {
-		for ( var y = 0; y <= 5; y++) {
-			for ( var x = 0; x <= 2; x++) {
+	for ( let j = 1; j <= 4; j++) {
+		for ( let y = 0; y <= 5; y++) {
+			for ( let x = 0; x <= 2; x++) {
 				angleOne = getAngleDigitPos(timeVariables[j-1], x, y, "arm1");
 				angleTwo = getAngleDigitPos(timeVariables[j-1], x, y, "arm2");
 				//console.log(i, j, x, y);
@@ -153,14 +295,18 @@ function loop_time() {
 			}
 		}
 	}
-	var list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 22, 29, 30, 37, 44, 45, 52, 59, 60, 67, 74, 75, 82, 89, 90, 97, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119];
-	for (var i = 0; i<list.length; i++)
+	let list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 22, 29, 30, 37, 44, 45, 52, 59, 60, 67, 74, 75, 82, 89, 90, 97, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119];
+	// if (screen.width<screen.height) {
+	// 	list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 47, 48, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 71, 72, 79, 80, 87, 88, 95, 96, 103, 104, 111, 112, 113, 114, 115, 116, 117, 118, 119];
+	// }
+	for (let i = 0; i<list.length; i++)
 	{
 		//console.log(i);
 		document.getElementsByClassName('unit')[list[i]].getElementsByClassName("arm")[0].style.transform = "translate(-50%, 0) rotate("+random_x*360+"deg)";
 		document.getElementsByClassName('unit')[list[i]].getElementsByClassName("arm")[1].style.transform = "translate(-50%, 0) rotate("+random_y*360+"deg)";
 	}
-	setTimeout(shuffle, 3000);
+	setTimeout(shuffle, interval+1000);
+	setTimeout(loop_time, 2*(interval+1000));
 }
 
 
@@ -178,7 +324,7 @@ function shuffle() {
 
 
 function getAngleDigitPos(digit, posX, posY, arm) {
-	var lookUpTable = 	[	
+	let lookUpTable = 	[	
 							[		//digit-0
 								[
 									{arm1: 90, arm2: 180}, //00

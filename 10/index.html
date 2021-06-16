@@ -4,8 +4,10 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #efeeee;">
 	<div class="outer-shell">
 		<dir class="inner-shell">
 			<div class="canvas-outer">
@@ -35,8 +37,57 @@
 			</div>
 		</dir>
 	</div>
-	<div id="fullscreen-button" onclick="goFullscreen()">
-		<i class="fa fa-expand"></i>
+	<div class="right-panel">
+		<div id="right-panel-title">Over<br>Clocked</div>
+		<div id="right-panel-description">Not just any clock on the internet</div>
+		<div id="right-panel-profile">
+			<a href="https://www.linkedin.com/in/xevozen/" target="_blank">
+				<div class="profile">
+					<i class="fa fa-linkedin fa-2x"></i>
+				</div>
+			</a>
+			<a href="https://github.com/xevozen" target="_blank">
+				<div class="profile">
+					<i class="fa fa-github fa-2x"></i>
+				</div>
+			</a>
+			<a href="">
+				<div class="profile">
+					<i class="fa fa-link fa-2x"></i>
+				</div>
+			</a>
+		</div>
+		<div id="right-panel-footer">
+			Dev <i class="fa fa-heart" style="color: #e63946;"></i>&nbsp;by <a href="https://github.com/xevozen"> Xevozen</a>
+			<br>
+			<a href="#">GitHub Repository</a>
+			<br>
+			<a href="#">Licence</a>
+		</div>
+	</div>
+	<div id="right-panel-button" onclick="showrightpanel()">
+		<i class="fa fa-info"></i>
+	</div>
+	<div id="rotate">
+		<h2>Mobile Device</h2>
+		<div class="content">
+			Device in portrait mode. This website works best in landscape mode. Go Landscape? 
+		</div>
+		<div class="confirm" onclick="rotate()">
+			<label>OK</label>
+		</div>
+	</div>
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<h2>Go Landscape?</h2>
+			<a class="close fa fa-close" onclick="closepopup()"></a>
+			<div class="content">
+				This website works best in landscape mode. Go Landscape? 
+			</div>
+			<div class="confirm" onclick="rotate()">
+				<label>OK</label>
+			</div>
+		</div>
 	</div>
 	<script src="script.js"></script>
 </body>
