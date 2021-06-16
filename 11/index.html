@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#myCanvas {
+			/*border:1px solid #d3d3d3;*/
+			-webkit-animation: rotation 2s infinite cubic-bezier(0.1, 0.5, 0.3, 0.1);;
+		}
+		@-webkit-keyframes rotation {
+			from {
+					-webkit-transform: rotate(0deg);
+			}
+			to {
+					-webkit-transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="110" height="110">
+	<script>
+		main();
+		//setInterval(main, 3000);
+		function sleep(ms) {
+			return new Promise(resolve => setTimeout(resolve, ms));
+		}
+		async function main() {
+			//console.time("start");
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			ctx.beginPath();
+			ctx.lineWidth = 10;
+			ctx.lineCap = "round";
+
+			ctx.save();
+			ctx.arc(55, 55, 50, 0, 0.5 * Math.PI);
+			ctx.stroke();
+			// ctx.arc(55, 55, 50, 0, Math.PI/2);
+			// ctx.stroke();
+			
+			for (var i = 0; i <= 2; i+= 0.01) {
+				ctx.clearRect(0, 0, 110, 110);
+			 	ctx.restore();
+				ctx.beginPath();
+				ctx.arc(55, 55, 50, 0, i * Math.PI);
+				ctx.strokeStyle = "#1e96fc";
+				ctx.stroke();
+				await sleep(4 + 3*i);
+			}
+			for (var i = 0; i <= 2; i+= 0.01) {
+				ctx.clearRect(0, 0, 110, 110);
+			 	ctx.restore();
+				ctx.beginPath();
+				ctx.arc(55, 55, 50, i * Math.PI, 2 * Math.PI);
+				ctx.stroke();
+				await sleep(6 - 3*i);
+			}
+			await sleep(500);
+			main();
+			//console.timeEnd("start");
+		}
+	</script> 
+</body>
+</html>
